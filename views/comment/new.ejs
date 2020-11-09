@@ -1,0 +1,17 @@
+<%- include ("../partials/header") %> 
+
+<div class="container text-center mt-5">
+	<h1 class="mb-5">Add new Comment</h1>
+
+	<div class="m-auto pt-3" style="width: 70%;">
+		<form action="/camp/<%= camp._id %>/comment" method="POST">
+			<div class="form-group">
+			<input type="text" class="form-control" name="comment[text]" placeholder="Enter Text here">
+			</div>
+			<div class="form-group">	
+				<button class="btn btn-lg btn-info btn-block">Submit</button>
+			</div>
+		</form>
+	</div>
+</div>
+<%- include ("../partials/footer") %> 

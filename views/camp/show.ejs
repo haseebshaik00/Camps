@@ -1,0 +1,55 @@
+<%- include ("../partials/header") %> 
+<div class="container mt-5"> 
+	<div class="row">
+		<div class="col-md-3 mb-5">
+			<p class="lead"><h2>Camps</h2></p>
+			<div class="list-group"> 
+				<li class="list-group-item"> Info 1 </li>
+				<li class="list-group-item"> Info 2 </li>
+				<li class="list-group-item"> Info 3 </li>
+			</div>
+		</div>
+		<div class="col-md-9">
+			
+			<div class="img-thumbnail p-3">
+			<div class="text-center img-thumbnail mb-3"><img style="width:100%;" class="img-fluid justify-content-center" src="<%= f.image %>"> </div>
+			<h4><p><%= f.name %></p></h4>
+			<h6 class="float-right form-inline">Rs <%= f.price %>/per night</h6>
+			<p><%= f.description %></p>
+			<div> 
+				<em>Submitted by <%= f.author.username %> </em> 
+				<% if(currentUser && f.author.id.equals(currentUser._id)) {%>
+				<a class="btn btn-info float-right mb-5 mr-4" href="/camp/<%= f._id %>/edit">Edit Camp</a>
+			<form  style="display: inline;" class="float-right mr-2" action="/camp/<%= f._id%>?_method=DELETE" method="POST">
+				<button class="btn btn-danger"> Delete </button> 
+			</form>
+			<% } %>
+			</div>
+			<br>
+			<br>
+				<div class="p-3" style="background-color : lightgrey; border-radius: 5px;">
+					<div>
+					<strong style="font-size: 200%;"> Reviews </strong>
+					<a type="submit" class="btn btn-info float-right m-2" href="/camp/<%= f._id %>/comment/new">Leave Review</a></div>
+					<div>
+					
+					<% f.comments.forEach(function(fc){ %>
+					<hr style="border-top: 1px solid black; width:70%;">
+						<strong> <%= fc.author.username %> </strong>
+						<% if(currentUser && fc.author.id.equals(currentUser._id)) {%>
+						<a class="btn btn-sm mb-5 btn-info float-right" href="/camp/<%= f._id %>/comment/<%= fc._id %>/edit" >Edit</a>
+						<form  style="display: inline;" class="float-right mr-2" action="/camp/<%= f._id%>/comment/<%=fc.id%>?_method=DELETE" method="POST">
+							<button class="btn btn-sm btn-danger"> Delete </button> 
+						</form>
+						<% } %>
+						<br>
+						<%= fc.text %>
+					<% }); %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<%- include ("../partials/footer") %> 

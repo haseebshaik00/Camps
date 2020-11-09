@@ -1,0 +1,31 @@
+<%- include ("../partials/header") %> 
+
+<div class="container pt-5">
+	
+	<header class="jumbotron">
+		<div class="container">
+		<i class="fas fa-campground fa-7x"></i>	
+			<strong style="font-size: 5rem">Camps page</strong>
+			<h4> Nature awaits you...</h4>
+			<a class="btn btn-danger" href="/camp/new"> <h6> Add new Camp </h6> </a>
+			<a class="btn btn-danger" href="/"> <h6> Go to Home! </h6> </a>
+		</div>
+	</header>
+
+
+	<div class="row text-center" style="display:flex; flex-wrap:wrap; ">
+		<% c.forEach(function(c){ %>
+			<div class="col-md-4 col-lg-3 col-sm-6">	
+				<div class="img-thumbnail"> 
+					<img class="img-thumbnail" src="<%= c.image; %>">
+					<h3 class="caption"> <%= c.name; %> </h3> 
+					<p> 
+						<a href="/camp/<%= c._id %>" class="btn btn-info">More Info</a>
+					</p>
+				</div>
+			</div>
+		<% }); %>
+	</div>
+</div>
+
+<%- include ("../partials/footer") %> 

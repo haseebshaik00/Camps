@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Camp</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/4e5c908f92.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/css/auth.css">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-info text-white">
+  <a class="navbar-brand" href="/">Camps</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse navbar-right" id="navbarSupportedContent">
+    <ul class="navbar-nav ml-auto">
+     <% if(!currentUser){ %>
+      <li class="nav-item">
+        <a class="nav-link text-white mr-2" href="/login">Login</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/register">Sign Up</a>
+      </li>
+      <% } else{ %>
+      <li class="nav-item">
+        <a class="nav-link text-white"><%= currentUser.username %></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="/logout">Logout</a>
+      </li>
+    <% } %>
+      
+    </ul>
+  </div>
+</nav>
+
+<% if(error && error.length>0){ %>
+<div class="alert alert-danger m-3 p-3" role="alert">
+  <%= error %>
+</div>
+<% } %>
+
+<% if(success && success.length>0){ %>
+<div class="alert alert-success m-3 p-3" role="alert">
+  <%= success %>
+</div>
+<% } %>
+
+<div id="login" class="container text-center">
+	<h1 class="mb-5">Sign Up</h1>
+	<form action="/register" method="POST">
+		<div class="form-group">
+		<input type="text" class="form-control" name="username" placeholder="Username">
+		</div>
+		<div class="form-group">
+		<input type="password" name="password" class="form-control" placeholder="Password">
+		</div>
+		<button class="btn-info btn btn-block">Register</button>
+	</form>
+</div>
+<%- include ("./partials/footer") %> 
